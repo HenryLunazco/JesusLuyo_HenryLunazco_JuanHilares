@@ -1,7 +1,20 @@
-USE master;
-DROP DATABASE db_control;
-CREATE DATABASE db_control;
-USE db_control;
+--- CREAMOS LA BASE DE DATOS --
+USE master
+GO
+
+IF EXISTS (SELECT name FROM sys.databases WHERE name = 'db_control')
+BEGIN
+    ALTER DATABASE db_control SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE db_control;
+END
+GO
+
+CREATE DATABASE db_control
+GO
+
+USE db_control
+GO
+
 ---------------------------------------------------------------------------------------------------------
 -- Table: campus
 CREATE TABLE campus (
